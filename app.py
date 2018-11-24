@@ -1,7 +1,7 @@
 import os
 import sys
 
-from flask import Flask, flash, render_template, request
+from flask import Flask, flash, render_template, request, jsonify
 
 from connection import session
 from database_setup import DuesRecord
@@ -26,6 +26,15 @@ def homepage():
             return render_template('homepage.html',result = result)        
     else:
         pass 
+
+@app.route('/<roll_no>')
+def homepageJSON(roll_no):
+	roll_no	= roll_no.encode('ascii').upper()
+	try:
+	    record = session.query(DuesRecord).filter_by(roll_no = roll_no).one()
+	    return jsonify(due=record.serialize)          
+	except:
+	    return "Invalid roll number"
 
 def main():
     app.secret_key = 'fbjsdbfjlabsdkjbsjdk'
