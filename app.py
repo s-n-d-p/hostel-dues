@@ -1,7 +1,10 @@
-from flask import Flask, render_template, request, flash
+import os
+import sys
+
+from flask import Flask, flash, render_template, request
+
 from connection import session
 from database_setup import DuesRecord
-import os
 
 app = Flask(__name__)
 
@@ -22,7 +25,10 @@ def homepage():
 
 def main():
     app.secret_key = 'fbjsdbfjlabsdkjbsjdk'
-    # app.debug = True
+    # print(sys.argv)
+    if len(sys.argv) > 1:
+        if sys.argv[1] == 't':
+            app.debug = True
     port = int(os.environ.get('PORT',8000))
     app.run(host = '0.0.0.0',port = port) 
 
