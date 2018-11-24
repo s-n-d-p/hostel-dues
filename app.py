@@ -7,15 +7,16 @@ app = Flask(__name__)
 
 @app.route('/',methods = ['GET','POST'])
 def homepage():
+    result = ''
     if request.method == 'GET':
-        return render_template('homepage.html')
+        return render_template('homepage.html',result = result)
     elif request.method == 'POST':
         roll_no = request.form['roll_no'].encode('ascii')
         record = session.query(DuesRecord).filter_by(roll_no = roll_no).one()
-        flash("Name: " + record.name + '\n')
-        flash("Roll No: " + record.roll_no + '\n')
-        flash("Due: " + str(record.due) + '\n')
-        return render_template('homepage.html')        
+        result = "Name: " + record.name + '\n'
+        result += "Roll No: " + record.roll_no + '\n'
+        result += "Due: " + str(record.due) + '\n'
+        return render_template('homepage.html',result = result)        
     else:
         pass 
 
