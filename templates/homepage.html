@@ -1,17 +1,85 @@
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>Hostel Dues | NIT Calicut</title>
-        <link rel="icon" href="./static/favicon.ico">
-        <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+        <link rel="icon" href="../static/favicon.ico">
+        <link rel=stylesheet type=text/css href="../static/css/bootstrap.min.css">
+        <link rel=stylesheet type=text/css href="../static/css/styles.css">
+
     </head>
     <body>
-        <h2>{{result}}</h2>
+        <nav class="navbar fixed-top navbar-light bg-primary">
+            <a class="navbar-brand text-light">
+                <img src="../static/favicon.ico" width="45px" height="45px" alt="" class="d-inline-block align-top ml-md-2 mr-md-2">
+                <span class="h4 align-bottom">NIT Calicut | Hostel Dues Checker</span>
+            </a>
+        </nav>
 
-        <form
-            action="" method="post"
-        >
-            <input type="text" placeholder="Roll Number" name="roll_no">
-            <input type="submit" value="Get-Dues">
-        </form>
+        <div class="container-fluid bg-image">
+            <form class="col-lg-4 col-md-6 offset-lg-4 offset-md-3 form-container" action="" method="post">
+                <div class="form-group">
+                    <input class="form-control form-control-transparent text-primary" type="text" placeholder="Roll number (Eg. b150487cs)" name="roll_no">
+                </div>
+            
+                <input class="btn btn-primary btn-block" type="submit" value="Check">
+                <!-- <a href="/accounts/password_reset/" class="btn btn-link text-primary text-center pt-md-1 pl-md-0">Forgot Password?</a> -->
+            </form>
+            <a href="{{url_for('homepageJSON',roll_no='roll_no')}}" class="btn btn-primary text-light fixed-bottom">Check out the API!</a>
+
+            {% if (name and due) or result %}
+                <div class="col-lg-4 col-md-6 offset-lg-4 offset-md-3 message">
+                    <div class="row">
+                        <div class="col-md-12 bg-primary text-light">
+                            Name: {{name}}<br>
+                        </div>
+                        <div class="col-md-12 bg-primary text-light">
+                            Due: &#8377;{{due}}/-<br>
+                        </div>
+                        <div class="col-md-12 bg-primary text-light">
+                            {{result}}<br>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+                    
+           <!--  <div class="col-lg-4 col-md-6 offset-lg-4 offset-md-3 message">
+                {% if result %}
+                    <div class="row">
+                        <div class="col-md-12 bg-primary text-light">
+                            {{result}}<br>
+                        </div>
+                    </div>
+                {% endif %}
+            </div> -->
+
+
+        </div>
+
     </body>
 </html>
+
+
+    <!-- <body>
+        <div class="container-fluid full">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="text-dark bg-light text-center text-uppercase">Hostel Dues</h1>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <form action="" method="post">
+                        <div class="form-group">
+                            <label for="roll_no">Roll No:</label>
+                            <input type="text" placeholder="Roll Number" class="form-control" id="roll_no">
+                        </div>
+                        <button type="submit" class="btn btn-default">Check</button>
+                    </form>   
+                </div>
+            </div>
+
+        </div>
+    </body>
+</html> -->

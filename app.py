@@ -10,6 +10,8 @@ app = Flask(__name__)
 
 @app.route('/',methods = ['GET','POST'])
 def homepage():
+    name = ''
+    due = ''
     result = ''
     if request.method == 'GET':
         return render_template('homepage.html',result = result)
@@ -17,13 +19,11 @@ def homepage():
         roll_no = request.form['roll_no'].encode('ascii').upper()
         try:
             record = session.query(DuesRecord).filter_by(roll_no = roll_no).one()
-            result = "Name: " + record.name + '\n'
-            result += "Roll No: " + record.roll_no + '\n'
-            result += "Due: " + str(record.due) + '\n'
-            return render_template('homepage.html',result = result)        
+            name, due = record.name, record.due
+            return render_template('homepage.html',name = name, due = due, result = '')        
         except:
-            result = "Invalid roll number"
-            return render_template('homepage.html',result = result)        
+            result = "Invalid roll number!"
+            return render_template('homepage.html',name = 'NA', due = 0, result = result)        
     else:
         pass 
 
@@ -34,7 +34,8 @@ def homepageJSON(roll_no):
 	    record = session.query(DuesRecord).filter_by(roll_no = roll_no).one()
 	    return jsonify(due=record.serialize)          
 	except:
-	    return "Invalid roll number"
+	    return '''
+            Format: &nbsp&nbsp&nbsp&nbsp hostel-dues.herokuapp.com/&lt;roll_no&gt;''' + '<br>' + '''Example: &nbsp hostel-dues.herokuapp.com/b150487cs'''
 
 def main():
     app.secret_key = 'fbjsdbfjlabsdkjbsjdk'

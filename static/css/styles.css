@@ -1,0 +1,58 @@
+/* body {
+    background-image: url('../bg.jpg');
+    position: fixed;
+    overflow: auto;
+    background-size: cover;
+    background-repeat: no-repeat;
+} */
+
+html, body {
+    height: 100%;
+}
+
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+
+head {
+    display: none;
+}
+
+.navbar {
+    padding-left: 0;
+    padding-right: 0;
+    margin-bottom: 1rem;
+}
+
+.bg-image {
+    position: fixed;
+    overflow: auto;
+    background-image: url(bg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.container-fluid {
+    height: calc(100% - 71px);
+    margin-top: 71px;
+}
+
+.form-container {
+    margin-top: 18vh;
+    padding: 30px;
+    background-color: black;
+    opacity: .75;
+    border-radius: .25rem;
+}
+
+.message {
+    margin-top: 18vh;
+    padding: 30px;
+    background-color: black;
+    opacity: .75;
+    border-radius: .25rem;
+}
