@@ -1,9 +1,14 @@
 body {
     font-family: sans-serif;
-    background-color: #001f3f
+    /* background-color: #001f3f */
+    background-image: url('./bg.jpg');
+    position: fixed;
+    overflow: auto;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
-h1, h2, h3, h4 {
+/* h1, h2, h3, h4 {
     color: #ffffff;
 }
 
@@ -29,9 +34,9 @@ a {
     text-decoration: none;
     color: #ffffcc;
     font-size: .75em;
-}
+} */
 
-.pane {
+/* .pane {
     position: absolute;
     left: 25%;
     border: 2px solid;
@@ -40,29 +45,13 @@ a {
     margin: 5px;
     border-color: #999999;
     background-color: #001f3f
-}
+} */
 
-.header {
+/* .header {
     left: 50%;
     text-align: center;
 }
 
-.name {
-    width: 50%;
-    display: inline-block;
-    float: left;
-}
-
-.description {}
-
-.price {
-    text-align: right;
-    width: 50%;
-    float: right;
-}
-
-.editdeletepane {}
-
 .flash {
     background: #cee5f5;
-}
+} */
