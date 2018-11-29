@@ -31,7 +31,7 @@ head {
 .bg-image {
     position: fixed;
     overflow: auto;
-    background-image: url(bg.jpg);
+    background-image: url(../bg.jpg);
     background-size: cover;
     background-repeat: no-repeat;
 }
