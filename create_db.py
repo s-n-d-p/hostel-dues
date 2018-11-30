@@ -10,7 +10,7 @@ import requests
 from connection import session
 from database_setup import DuesRecord
 
-debug = True
+debug = False
 
 def get_regex(course):
 	if course == 'BTECH.pdf':

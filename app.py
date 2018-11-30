@@ -17,16 +17,16 @@ def homepage():
     due = ''
     result = ''
     if request.method == 'GET':
-        return render_template('homepage.html',result = result, date = app.config['date'])
+        return render_template('homepage.html',result = result, date = app.config['DATE'])
     elif request.method == 'POST':
         roll_no = request.form['roll_no'].encode('ascii').upper()
         try:
             record = session.query(DuesRecord).filter_by(roll_no = roll_no).one()
             name, due = record.name, record.due
-            return render_template('homepage.html',name = name, due = due, result = '', date = app.config['date'])        
+            return render_template('homepage.html',name = name, due = due, result = '', date = app.config['DATE'])        
         except:
             result = "Invalid roll number!"
-            return render_template('homepage.html',name = 'NA', due = 0, result = result, date = app.config['date'])        
+            return render_template('homepage.html',name = 'NA', due = 0, result = result, date = app.config['DATE'])        
     else:
         pass 
 
@@ -61,7 +61,7 @@ def fetchLastUpdateDetails():
     day = config.get('Last_Update','date')
     month = config.get('Last_Update','month')
     year = config.get('Last_Update','year')
-    app.config['date'] = day + '/' + month + '/' + year
+    app.config['DATE'] = day + '/' + month + '/' + year
 
 def main():
     fetchLastUpdateDetails()
