@@ -11,13 +11,12 @@ from create_db import main as update_database
 
 app = Flask(__name__)
 
-DATE = ''
-
 @app.route('/',methods = ['GET','POST'])
 def homepage():
     name = ''
     due = ''
     result = ''
+    DATE = fetchLastUpdateDetails()
     if request.method == 'GET':
         return render_template('homepage.html',result = result, date = DATE)
     elif request.method == 'POST':
@@ -58,13 +57,12 @@ def updateDatabase():
         pass 
 
 def fetchLastUpdateDetails():
-    global DATE
     config = ConfigParser.ConfigParser()
     config.read('config.ini')
     day = config.get('Last_Update','date')
     month = config.get('Last_Update','month')
     year = config.get('Last_Update','year')
-    DATE = day + '/' + month + '/' + year
+    return day + '/' + month + '/' + year
 
 def main():
     fetchLastUpdateDetails()
