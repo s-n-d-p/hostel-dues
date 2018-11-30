@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Hostel Dues | NIT Calicut</title>
+        <link rel="icon" href="../static/favicon.ico">
+        <link rel=stylesheet type=text/css href="../static/css/bootstrap.min.css">
+        <link rel=stylesheet type=text/css href="../static/css/styles.css">
+
+    </head>
+    <body>
+        <nav class="navbar fixed-top navbar-light bg-primary">
+            <a class="navbar-brand text-light">
+                <img src="../static/nitc-logo.png" width="45px" height="45px" alt="" class="d-inline-block align-top ml-md-2 mr-md-2">
+                <span class="h4 align-bottom">NITC | Hostel Dues Checker</span>
+            </a>
+        </nav>
+
+        <div class="container-fluid bg-image">
+            <form class="col-lg-4 col-md-6 offset-lg-4 offset-md-3 form-container" action="" method="post">
+                <div class="h5 text-center text-primary mb-md-3 font-weight-bold">Last update: {{date}}</div>
+                <div class="form-group">
+                    <input class="form-control form-control-transparent text-primary" type="password" placeholder="Password" name="password">
+                </div>
+            
+                <input class="btn btn-primary btn-block" type="submit" value="Update">
+                <a href="/" class="btn btn-link text-primary text-center pt-md-1 pl-md-0">Not Admin?</a>
+            </form>
+            <a href="{{url_for('homepageJSON',roll_no='roll_no')}}" class="btn btn-primary text-light fixed-bottom">Check out the API!</a>
+        </div>
+
+    </body>
+</html>

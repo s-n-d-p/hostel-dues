@@ -1,8 +1,11 @@
-import requests
-import PyPDF2
-import sys
+import ConfigParser
+import datetime
 import os
 import re
+import sys
+
+import PyPDF2
+import requests
 
 from connection import session
 from database_setup import DuesRecord
@@ -18,7 +21,7 @@ def get_regex(course):
 		return re.compile(r'M\d+\w{2}\s.+\s-?\d+')
 
 
-def main():
+def parsePDFs():
 	URL = 'http://www.nitc.ac.in/app/webroot/img/upload/'
 	COURSE = ['BTECH.pdf', 'PG.pdf', 'PhD.pdf']
 	session.query(DuesRecord).delete()
@@ -54,6 +57,19 @@ def main():
 				session.add(DuesRecord(roll_no=roll, name=name, due=int(due)))
 		session.commit()
 
+def updateConfig():
+	config = ConfigParser.ConfigParser()
+	now = datetime.datetime.now()
+	config.add_section('Last_Update')
+	config.set('Last_Update','date',now.day)
+	config.set('Last_Update','month',now.month)
+	config.set('Last_Update','year',now.year)
+	with open('config.ini','w') as configFile:
+		config.write(configFile)
+
+def main():
+	parsePDFs()
+	updateConfig()
+
 if __name__ == "__main__":
 	main()
-	sys.exit()
