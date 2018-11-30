@@ -44,12 +44,12 @@ def homepageJSON(roll_no):
 @app.route('/update', methods = ['GET','POST'])
 def updateDatabase():
     if request.method == 'GET':
+        DATE = fetchLastUpdateDetails()
         return render_template('updatepage.html', date = DATE) 
     elif request.method == 'POST':
         if 'password' in request.form:
             if request.form['password'] == 'b150487CS@1':
                 update_database()
-                fetchLastUpdateDetails()
                 return redirect(url_for('homepage'))
             else:
                 return redirect(url_for('homepage'))

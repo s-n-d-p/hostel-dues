@@ -1,3 +1,4 @@
+import binascii
 import ConfigParser
 import datetime
 import os
@@ -32,6 +33,7 @@ def parsePDFs():
 			dues = open(course, 'wb')
 			for chunk in res.iter_content(100000):
 				dues.write(chunk)
+			dues.write(bin(int(binascii.hexlify("%%EOF"),16)))
 			dues.close()
 
 		pdf_file_obj = open(course, 'rb')
