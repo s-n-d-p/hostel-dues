@@ -48,7 +48,7 @@ def updateDatabase():
         return render_template('updatepage.html', date = DATE) 
     elif request.method == 'POST':
         if 'password' in request.form:
-            if request.form['password'] == 'b150487CS@1':
+            if request.form['password'] == '':
                 update_database()
                 return redirect(url_for('homepage'))
             else:
