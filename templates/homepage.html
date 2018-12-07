@@ -1,7 +1,7 @@
 <html>
     <head>
         <title>Hostel Dues | NIT Calicut</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=nos, minimum-scale=1.0, maximum-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
         <meta charset="utf-8">
         <link rel="icon" href="../static/favicon.ico">
         <link rel=stylesheet type=text/css href="../static/css/styles.css">
@@ -23,8 +23,8 @@
         <main>
             <form action="" method="post">
                  <input type="text" placeholder="Roll number (Eg. B150487CS)" 
-                        name="roll_no" required="true" autocomplete="off" >
-                 <input class="button" type="submit" value="Check">
+                        name="roll_no" id="roll_no" required="true" autocomplete="off" >
+                 <input class="button" type="submit" id="check" value="Check">
             </form>
             <div class="message">
             {% if (name and due) or result %}
@@ -44,5 +44,14 @@
                 <a href="http://hostel-dues.herokuapp.com/roll_no">api</a>
             </div>
         </main>
+
+        <script>
+            if ( localStorage.roll_no !== null ) {
+                document.getElementById('roll_no').value = localStorage.roll_no;
+            } 
+            document.getElementById('roll_no').addEventListener('change',function() {
+                localStorage.roll_no = document.getElementById('roll_no').value;
+            });
+        </script>
     </body>
 </html>
