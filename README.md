@@ -1,8 +1,6 @@
 # NIT-C Hostel dues 
 
 ## Build Instructions
-- Install python, pip
-- Install Flask
+- install python, pip (https://www.tecmint.com/install-pip-in-linux/)
 - pip install -r requirements.txt
-- export FLASK_ENV=development
-- flask run
+- python app.py

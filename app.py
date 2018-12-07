@@ -49,7 +49,7 @@ def updateDatabase():
     elif request.method == 'POST':
         if 'password' in request.form:
             if request.form['password'] == '':
-                update_database()
+                # update_database()
                 return redirect(url_for('homepage'))
             else:
                 return redirect(url_for('homepage'))
