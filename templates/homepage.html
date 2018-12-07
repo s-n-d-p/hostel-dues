@@ -46,7 +46,7 @@
         </main>
 
         <script>
-            if ( localStorage.roll_no !== null ) {
+            if ( localStorage.roll_no !== undefined ) {
                 document.getElementById('roll_no').value = localStorage.roll_no;
             } 
             document.getElementById('roll_no').addEventListener('change',function() {
