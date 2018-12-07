@@ -2,7 +2,7 @@
 
 ## Build Instructions
 - Install python, pip
-- Install Flash
+- Install Flask
 - pip install -r requirements.txt
 - export FLASK_ENV=development
 - flask run
