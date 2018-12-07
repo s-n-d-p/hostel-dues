@@ -1,58 +1,90 @@
-/* body {
-    background-image: url('../bg.jpg');
-    position: fixed;
-    overflow: auto;
+html, body, div, form {
+ margin: 0;
+ padding: 0; 
+}
+
+h1, h2, h3, h4, h5, h6 { 
+    font-weight:normal;
+}
+
+img {
+    border: 0;
+}
+
+body {
+    font-family: sans-serif;
     background-size: cover;
-    background-repeat: no-repeat;
-} */
-
-html, body {
-    height: 100%;
+    background-image: url('../bg.jpg')
 }
 
-* {
-    font-family: 'Roboto', sans-serif;
+a {
+    color: #fff;
 }
 
-*, ::after, ::before {
+nav {
+    background: #007bff;
+    color: white;
+    padding: 1em;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    margin-bottom: 1em;
+}
+nav h1 {
+    margin:0;
+}
+nav img {
+    height: 45px;
+    width: 45px;
+    margin-right: 0.5em;
+}
+
+main {
     box-sizing: border-box;
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+    padding: 1em;
+}
+.notify {
+    color: red;
+    text-align: center;
+    font-weight: bold
 }
 
-head {
-    display: none;
+form {
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding: 1em;
+    color: #fff;
+    background-color: #000;
+    background-color: rgba(0,0,0,0.7);
+}
+form input {
+    width: 100%;
+    margin-bottom: 0.5em;
+    padding: 1em;
+    border-radius: 5px;
 }
 
-.navbar {
-    padding-left: 0;
-    padding-right: 0;
-    margin-bottom: 1rem;
-}
-
-.bg-image {
-    position: fixed;
-    overflow: auto;
-    background-image: url(../bg.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-
-.container-fluid {
-    height: calc(100% - 71px);
-    margin-top: 71px;
-}
-
-.form-container {
-    margin-top: 18vh;
-    padding: 30px;
-    background-color: black;
-    opacity: .75;
-    border-radius: .25rem;
+.button {
+    text-transform: uppercase;
+    font-weight: bold;
+    border:0;
+    border-radius: 5px;
+    background-color: #007bff;
+    color:#fff;
 }
 
 .message {
-    margin-top: 2vh;
-    padding: 30px;
-    background-color: black;
-    opacity: .75;
-    border-radius: .25rem;
+    margin-top: 1em;
+    padding: 1em;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #000;
+    background-color: rgba(0,0,0,0.7);
+}
+
+footer{
+    align-self: baseline;
 }
