@@ -17,17 +17,18 @@ def homepage():
     due = ''
     result = ''
     DATE = fetchLastUpdateDetails()
+    PAYMENT_DATE =fetchLastPaymentUpdateDetails()
     if request.method == 'GET':
-        return render_template('homepage.html',result = result, date = DATE)
+        return render_template('homepage.html',result = result, date = DATE, paymentdate = PAYMENT_DATE)
     elif request.method == 'POST':
         roll_no = request.form['roll_no'].encode('ascii').upper()
         try:
             record = session.query(DuesRecord).filter_by(roll_no = roll_no).one()
             name, due = record.name, record.due
-            return render_template('homepage.html',name = name, due = due, result = '', date = DATE)        
+            return render_template('homepage.html',name = name, due = due, result = '', date = DATE, paymentdate = PAYMENT_DATE)        
         except:
             result = "Invalid roll number!"
-            return render_template('homepage.html',name = 'NA', due = 0, result = result, date = DATE)        
+            return render_template('homepage.html',name = 'NA', due = 0, result = result, date = DATE, paymentdate = PAYMENT_DATE)        
     else:
         pass 
 
@@ -45,7 +46,7 @@ def homepageJSON(roll_no):
 def updateDatabase():
     if request.method == 'GET':
         DATE = fetchLastUpdateDetails()
-        return render_template('updatepage.html', date = DATE) 
+        return render_template('updatepage.html', date = DATE, paymentdate = PAYMENT_DATE) 
     elif request.method == 'POST':
         if 'password' in request.form:
             if request.form['password'] == '':
@@ -62,6 +63,15 @@ def fetchLastUpdateDetails():
     day = config.get('Last_Update','date')
     month = config.get('Last_Update','month')
     year = config.get('Last_Update','year')
+    print(day+month+year)
+    return day + '/' + month + '/' + year
+
+def fetchLastPaymentUpdateDetails():
+    config = ConfigParser.ConfigParser()
+    config.read('config.ini')
+    day = config.get('Last_Payment_Update','date')
+    month = config.get('Last_Payment_Update','month')
+    year = config.get('Last_Payment_Update','year')
     return day + '/' + month + '/' + year
 
 def main():

@@ -12,6 +12,9 @@ from connection import session
 from database_setup import DuesRecord
 
 debug = False
+date = ''
+month = ''
+year = ''
 
 def get_regex(course):
 	if course == 'BTECH.pdf':
@@ -48,6 +51,9 @@ def parsePDFs():
 			search_res = roll_rex.findall(text)
 
 			if i == 0:
+				global date
+				global month
+				global year
 				monthDict = { 'JANUARY':'1','FEBRUARY':'2','MARCH':'3',
 								'APRIL':'4','MAY':'5','JUNE':'6','JULY':'7',
 								'AUGUST':'8','SEPTEMBER':'9','OCTOBER':'10',
@@ -56,9 +62,9 @@ def parsePDFs():
 				for line in lines:
 					if 'Payment' in line:
 						wordsInLine = line.split()
-						date = wordsInLine[3][0:2]
+						date = wordsInLine[3].replace("th","")
 						month = monthDict[wordsInLine[4].upper()]
-						year = wordsInLine[5][0:-1]
+						year = wordsInLine[5].replace(")","")
 
 			for res in search_res:
 				r = res.split('\n')
@@ -76,9 +82,13 @@ def updateConfig():
 	config = ConfigParser.ConfigParser()
 	now = datetime.datetime.now()
 	config.add_section('Last_Update')
-	config.set('Last_Update','date',date)
-	config.set('Last_Update','month',month)
-	config.set('Last_Update','year',year)
+	config.set('Last_Update','date',now.day)
+	config.set('Last_Update','month',now.month)
+	config.set('Last_Update','year',now.year)
+	config.add_section('Last_Payment_Update')
+	config.set('Last_Payment_Update','date',date)
+	config.set('Last_Payment_Update','month',month)
+	config.set('Last_Payment_Update','year',year)
 	with open('config.ini','w') as configFile:
 		config.write(configFile)
 

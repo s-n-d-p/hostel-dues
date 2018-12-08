@@ -35,7 +35,8 @@
                     </div>
             {% else %}
                 <div><i>Enter your Roll no. to check hostel dues.</i></div>
-                <div>Last update: {%if date%}<b>{{date}}</b>{%endif%}</div>
+                <div>Last update: {%if date%}<b>{{date}}</b>{%endif%}</div> 
+                <div>Last Payment update: {%if paymentdate%}<b>{{paymentdate}}</b>{%endif%}</div>
             {% endif %}
             </div>
             <div class="message">
