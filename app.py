@@ -63,7 +63,7 @@ def fetchLastUpdateDetails():
     day = config.get('Last_Update','date')
     month = config.get('Last_Update','month')
     year = config.get('Last_Update','year')
-    print(day+month+year)
+//    print(day+month+year)
     return day + '/' + month + '/' + year
 
 def fetchLastPaymentUpdateDetails():
