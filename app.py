@@ -1,6 +1,7 @@
 import ConfigParser
 import os
 import sys
+import hashlib
 
 from flask import Flask, flash, jsonify, render_template, request, redirect, url_for
 
@@ -46,11 +47,12 @@ def homepageJSON(roll_no):
 def updateDatabase():
     if request.method == 'GET':
         DATE = fetchLastUpdateDetails()
+        PAYMENT_DATE =fetchLastPaymentUpdateDetails()
         return render_template('updatepage.html', date = DATE, paymentdate = PAYMENT_DATE) 
     elif request.method == 'POST':
         if 'password' in request.form:
-            if request.form['password'] == '':
-                # update_database()
+            if hashlib.sha256(request.form['password']).hexdigest().upper() == 'E4A2667CA4DE06EA446F371F58CC14D787767711C9BC05EC3C1E82D91FCF6C56':
+                update_database()
                 return redirect(url_for('homepage'))
             else:
                 return redirect(url_for('homepage'))
@@ -63,7 +65,6 @@ def fetchLastUpdateDetails():
     day = config.get('Last_Update','date')
     month = config.get('Last_Update','month')
     year = config.get('Last_Update','year')
-    print(day+month+year)
     return day + '/' + month + '/' + year
 
 def fetchLastPaymentUpdateDetails():
@@ -76,6 +77,7 @@ def fetchLastPaymentUpdateDetails():
 
 def main():
     fetchLastUpdateDetails()
+    fetchLastPaymentUpdateDetails()
     app.secret_key = 'theQuickBrownFoxJumpsOverTheLazyDog'
     if len(sys.argv) > 1:
         if sys.argv[1] == 't':
