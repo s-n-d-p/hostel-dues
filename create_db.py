@@ -12,6 +12,9 @@ from connection import session
 from database_setup import DuesRecord
 
 debug = False
+date = ''
+month = ''
+year = ''
 
 def get_regex(course):
 	if course == 'BTECH.pdf':
@@ -47,6 +50,22 @@ def parsePDFs():
 			text = page.extractText()
 			search_res = roll_rex.findall(text)
 
+			if i == 0:
+				global date
+				global month
+				global year
+				monthDict = { 'JANUARY':'1','FEBRUARY':'2','MARCH':'3',
+								'APRIL':'4','MAY':'5','JUNE':'6','JULY':'7',
+								'AUGUST':'8','SEPTEMBER':'9','OCTOBER':'10',
+								'NOVEMBER':'11','DECEMBER':'12'}
+				lines = text.split('\n')
+				for line in lines:
+					if 'Payment' in line:
+						wordsInLine = line.split()
+						date = wordsInLine[3].replace("th","")
+						month = monthDict[wordsInLine[4].upper()]
+						year = wordsInLine[5].replace(")","")
+
 			for res in search_res:
 				r = res.split('\n')
 				roll, name, due = r[0],r[1],r[2]
@@ -66,6 +85,10 @@ def updateConfig():
 	config.set('Last_Update','date',now.day)
 	config.set('Last_Update','month',now.month)
 	config.set('Last_Update','year',now.year)
+	config.add_section('Last_Payment_Update')
+	config.set('Last_Payment_Update','date',date)
+	config.set('Last_Payment_Update','month',month)
+	config.set('Last_Payment_Update','year',year)
 	with open('config.ini','w') as configFile:
 		config.write(configFile)
 
