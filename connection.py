@@ -6,3 +6,4 @@ engine = create_engine('sqlite:///dues_record.db',connect_args = {'check_same_th
 Base.metadata.bind=engine
 DBSession = sessionmaker(bind = engine)
 session = DBSession()
+# hacktoberfest
