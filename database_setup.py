@@ -35,3 +35,4 @@ class DuesRecord(Base):
 
 engine = create_engine('sqlite:///dues_record.db')
 Base.metadata.create_all(engine)
+# hacktoberfest
